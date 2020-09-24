@@ -5,9 +5,13 @@ import './message_level.dart';
 import './messages.dart';
 
 class ProgressReporter extends StdoutReporter {
+  List<String> automationStep = [];
   @override
   Future<void> onScenarioStarted(StartedMessage message) async {
     printMessageLine(
+        'Running scenario: ${_getNameAndContext(message.name, message.context)}',
+        StdoutReporter.WARN_COLOR);
+    automationStep.add(
         'Running scenario: ${_getNameAndContext(message.name, message.context)}',
         StdoutReporter.WARN_COLOR);
   }
